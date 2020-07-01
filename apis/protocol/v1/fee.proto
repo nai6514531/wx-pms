@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package protocol.fee.v1;
+
+// The greeting service definition.
+service FeeAdminApi {
+  rpc Logout(FeeAdminReq) returns (FeeAdminResp){}
+  rpc AdminOp(FeeAdminReq) returns (FeeAdminResp){}
+}
+
+message FeeAdminResp {
+  string cmd = 1;
+  string result = 2;
+}
+
+message FeeAdminReq {
+  string cmd = 1; 
+  string header = 2;
+}
