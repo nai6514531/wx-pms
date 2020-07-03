@@ -16,6 +16,16 @@
     "optional": "cpp",
     "__bit_reference": "cpp",
     "iostream": "cpp",
-    "istream": "cpp"
+    "istream": "cpp",
+    "ostream": "cpp",
+    "map": "cpp",
+    "memory": "cpp",
+    "unordered_map": "cpp",
+    "mutex": "cpp",
+    "__locale": "cpp",
+    "locale": "cpp",
+    "thread": "cpp",
+    "typeindex": "cpp",
+    "string": "cpp"
   }
 }

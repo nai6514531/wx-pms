@@ -34,8 +34,9 @@ grpc_deps()
 load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
 grpc_extra_deps()
 
-# new_local_repository(
-#     name = "usr_local",
-#     path = "/usr/local",
-#     build_file = "mysql.BUILD"
-# )
+# new_local_repository 允许将本地目录转换为bazel存储库
+new_local_repository(
+    name = "usr_local",
+    path = "/usr/local/mysql",
+    build_file = "mysql.BUILD"
+)

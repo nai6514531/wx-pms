@@ -18,6 +18,20 @@ cc_library(
     deps = [":3rd_md5"]
 )
 
+cc_library(
+    name = "3rd_mysqlplus",
+    hdrs = [
+        "3rd/sql/mysqlplus.h", 
+        "3rd/sql/polyfill/datetime.h",
+        "3rd/sql/polyfill/function_traits.h",
+        "3rd/sql/polyfill/optional.hpp"
+    ],
+    deps = [
+        "@usr_local//:mysql_build"
+    ],
+    visibility = ["//visibility:public"]
+)
+
 
 cc_binary(
     name = "client",
@@ -29,7 +43,7 @@ cc_binary(
         ":3rd_json",
         ":utils_strings",
         "@com_github_grpc_grpc//:grpc++",
-        "//apis:feepb",
+        "//apis:deduction",
     ],
 )
 
@@ -41,6 +55,7 @@ cc_binary(
     copts = [],
     deps = [
         "@com_github_grpc_grpc//:grpc++",
-        "//apis:feepb",
+        "//apis:deduction",
+        ":3rd_mysqlplus",
     ],
 )

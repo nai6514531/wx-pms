@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package protocol.payment.deduction.v1;
+
+// The greeting service definition.
+service DeductionAdminApi {
+  rpc GetDeductionList(DeductionAdminReq) returns (DeductionAdminResp) {}
+  rpc AdminOp(DeductionAdminReq) returns (DeductionAdminResp) {}
+}
+message DeductionStruct {
+  string title = 1;
+  string desc = 2;
+  uint32 status = 3;
+}
+
+message DeductionAdminResp {
+  string header = 1;
+  repeated DeductionStruct data = 2;
+}
+
+message DeductionAdminReq {
+  string header = 1;
+}

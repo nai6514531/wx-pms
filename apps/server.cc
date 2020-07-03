@@ -3,7 +3,11 @@
 #include <string>
 #include <grpcpp/grpcpp.h>
 
-#include "apis/cpp/protocol/v1/fee.grpc.pb.h"
+#include "apis/cpp/protocol/v1/deduction.grpc.pb.h"
+#include "apps/3rd/sql/mysqlplus.h"
+
+using namespace std;
+using namespace daotk::mysql;
 
 using std::string;
 
@@ -12,23 +16,43 @@ using grpc::ServerBuilder;
 using grpc::ServerContext;
 using grpc::Status;
 
-using protocol::fee::v1::FeeAdminApi;
-using protocol::fee::v1::FeeAdminReq;
-using protocol::fee::v1::FeeAdminResp;
+using protocol::payment::deduction::v1::DeductionAdminApi;
+using protocol::payment::deduction::v1::DeductionAdminReq;
+using protocol::payment::deduction::v1::DeductionAdminResp;
+using protocol::payment::deduction::v1::DeductionStruct;
+
 
 // Logic and data behind the server's behavior.
-class FeeAdminServer final : public FeeAdminApi::Service {
-  Status Logout(ServerContext* context, const FeeAdminReq* req, FeeAdminResp* res) override {
-    string result("Logout ");
-    res->set_result(result);
+class FeeAdminServer final : public DeductionAdminApi::Service {
+  Status GetDeductionList(ServerContext* context, const DeductionAdminReq* req, DeductionAdminResp* res) override {
+    connection my{ "127.0.0.1", "root", "nai6514531", "payment" };
+    if (!my) {
+      cout << "Connection failed" << endl;
+    }
+
+    DeductionStruct data;
+    int status;
+    string desc;
+    string title;
+    auto deduction_list = my.query("select * from deduction");
+
+    while (!deduction_list.eof()) {
+      deduction_list.fetch(status, desc, title);
+      cout << "title: " << title << ", status: " << status << ", desc: " << desc;
+			cout << endl;
+      data.set_title(title);
+      data.set_desc(desc);
+      data.set_status(status);
+      res->mutable_data()->Add(std::move(data));
+      deduction_list.next();
+    }
     return Status::OK;
   }
 
-  Status AdminOp(ServerContext* context, const FeeAdminReq* req, FeeAdminResp* res) override {
+  Status AdminOp(ServerContext* context, const DeductionAdminReq* req, DeductionAdminResp* res) override {
     string result("success hanlder");
-    string cmd = req->cmd();
-    std::cout << cmd << std::endl;
-    res->set_result(result);
+    string header = req->header();
+    std::cout << header << std::endl;
     return Status::OK;
   }
 };
