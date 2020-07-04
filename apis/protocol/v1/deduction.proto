@@ -11,13 +11,17 @@ message DeductionStruct {
   string title = 1;
   string desc = 2;
   uint32 status = 3;
+  uint32 id = 4;
+  uint32 pay_method_id = 5;
+  uint32 detail_id = 6;
 }
 
 message DeductionAdminResp {
-  string header = 1;
+  bool success = 1;
   repeated DeductionStruct data = 2;
+  string message = 3;
 }
 
 message DeductionAdminReq {
-  string header = 1;
+  DeductionStruct data = 1;
 }

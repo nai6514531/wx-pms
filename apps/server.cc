@@ -4,12 +4,21 @@
 #include <grpcpp/grpcpp.h>
 
 #include "apis/cpp/protocol/v1/deduction.grpc.pb.h"
+
 #include "apps/3rd/sql/mysqlplus.h"
+#include "apps/3rd/json.hpp"
+
+#include "apps/utils/config.hpp"
 
 using namespace std;
-using namespace daotk::mysql;
-
+using daotk::mysql::connection;
 using std::string;
+using nlohmann::json;
+
+using utils::AllConfig;
+using utils::Config;
+using utils::DBConfig;
+using utils::SvrConfig;
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -23,26 +32,35 @@ using protocol::payment::deduction::v1::DeductionStruct;
 
 
 // Logic and data behind the server's behavior.
-class FeeAdminServer final : public DeductionAdminApi::Service {
+class AdminServer final : public DeductionAdminApi::Service {
   Status GetDeductionList(ServerContext* context, const DeductionAdminReq* req, DeductionAdminResp* res) override {
-    connection my{ "127.0.0.1", "root", "nai6514531", "payment" };
-    if (!my) {
+    DBConfig dbConf = Config::Instance().GetDBConfig();
+    // Dao::Instance().GetDeductionList(dts);
+    connection conn{ dbConf.server, dbConf.username, dbConf.password, dbConf.dbname };
+    if (!conn) {
       cout << "Connection failed" << endl;
+      // 记录数据库链接失败
+      return Status::OK;
     }
-
+    
     DeductionStruct data;
-    int status;
     string desc;
     string title;
-    auto deduction_list = my.query("select * from deduction");
+    int status;
+    int id;
+    int pay_method_id;
+    int detail_id;
+    auto deduction_list = conn.query("select * from deduction");
 
     while (!deduction_list.eof()) {
-      deduction_list.fetch(status, desc, title);
-      cout << "title: " << title << ", status: " << status << ", desc: " << desc;
+      deduction_list.fetch(id, title, desc, status, pay_method_id, detail_id);
 			cout << endl;
       data.set_title(title);
       data.set_desc(desc);
       data.set_status(status);
+      data.set_id(id);
+      data.set_pay_method_id(pay_method_id);
+      data.set_detail_id(detail_id);
       res->mutable_data()->Add(std::move(data));
       deduction_list.next();
     }
@@ -50,36 +68,43 @@ class FeeAdminServer final : public DeductionAdminApi::Service {
   }
 
   Status AdminOp(ServerContext* context, const DeductionAdminReq* req, DeductionAdminResp* res) override {
-    string result("success hanlder");
-    string header = req->header();
-    std::cout << header << std::endl;
     return Status::OK;
   }
 };
 
-void RunServer() {
-  string address = "0.0.0.0";
-  string port = "50051";
-  string server_address = address + ":" + port;
-  FeeAdminServer service;
-
+void RunServer(SvrConfig sc) {
+  // 获取配置文件中的endpoint
+  string server_address(sc.endpoint);
+  AdminServer service;
   ServerBuilder builder;
-  // Listen on the given address without any authentication mechanism.
+
+  // 初始化grpc服务
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-  // Register "service" as the instance through which we'll communicate with
-  // clients. In this case it corresponds to an *synchronous* service.
   builder.RegisterService(&service);
-  // Finally assemble the server.
+
   std::unique_ptr<Server> server(builder.BuildAndStart());
   std::cout << "Server listening on " << server_address << std::endl;
-
-  // Wait for the server to shutdown. Note that some other thread must be
-  // responsible for shutting down the server for this call to ever return.
   server->Wait();
 }
 
+
 int main(int argc, char** argv) {
-  RunServer();
+  string defaultConfigFile = "confs/server.json";
+  if (!Config::Instance().Init(defaultConfigFile))
+  {
+    return -1;
+  }
+
+  SvrConfig svrConf = Config::Instance().GetSvrConfig();
+
+  // if (!Dao::Instance().Init(dbConf)) {
+  // }
+
+  // if (!Dao::Instance().Init(dbConf)) {
+  //   return -1;
+  // }
+
+  RunServer(svrConf);
 
   return 0;
 }

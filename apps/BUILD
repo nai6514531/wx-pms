@@ -19,6 +19,14 @@ cc_library(
 )
 
 cc_library(
+    name = "utils_config",
+    srcs = ["utils/config.cc"],
+    hdrs = ["utils/config.hpp"],
+    deps = [":3rd_json"]
+)
+
+
+cc_library(
     name = "3rd_mysqlplus",
     hdrs = [
         "3rd/sql/mysqlplus.h", 
@@ -57,5 +65,7 @@ cc_binary(
         "@com_github_grpc_grpc//:grpc++",
         "//apis:deduction",
         ":3rd_mysqlplus",
+        ":3rd_json",
+        ":utils_config"
     ],
 )

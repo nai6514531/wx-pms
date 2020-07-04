@@ -192,6 +192,9 @@ class DeductionStruct :
     kTitleFieldNumber = 1,
     kDescFieldNumber = 2,
     kStatusFieldNumber = 3,
+    kIdFieldNumber = 4,
+    kPayMethodIdFieldNumber = 5,
+    kDetailIdFieldNumber = 6,
   };
   // string title = 1;
   void clear_title();
@@ -234,6 +237,33 @@ class DeductionStruct :
   void _internal_set_status(::PROTOBUF_NAMESPACE_ID::uint32 value);
   public:
 
+  // uint32 id = 4;
+  void clear_id();
+  ::PROTOBUF_NAMESPACE_ID::uint32 id() const;
+  void set_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_id() const;
+  void _internal_set_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 pay_method_id = 5;
+  void clear_pay_method_id();
+  ::PROTOBUF_NAMESPACE_ID::uint32 pay_method_id() const;
+  void set_pay_method_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_pay_method_id() const;
+  void _internal_set_pay_method_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 detail_id = 6;
+  void clear_detail_id();
+  ::PROTOBUF_NAMESPACE_ID::uint32 detail_id() const;
+  void set_detail_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_detail_id() const;
+  void _internal_set_detail_id(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:protocol.payment.deduction.v1.DeductionStruct)
  private:
   class _Internal;
@@ -242,6 +272,9 @@ class DeductionStruct :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr desc_;
   ::PROTOBUF_NAMESPACE_ID::uint32 status_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 id_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 pay_method_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 detail_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_deduction_2eproto;
 };
@@ -354,7 +387,8 @@ class DeductionAdminResp :
 
   enum : int {
     kDataFieldNumber = 2,
-    kHeaderFieldNumber = 1,
+    kMessageFieldNumber = 3,
+    kSuccessFieldNumber = 1,
   };
   // repeated .protocol.payment.deduction.v1.DeductionStruct data = 2;
   int data_size() const;
@@ -374,20 +408,29 @@ class DeductionAdminResp :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::payment::deduction::v1::DeductionStruct >&
       data() const;
 
-  // string header = 1;
-  void clear_header();
-  const std::string& header() const;
-  void set_header(const std::string& value);
-  void set_header(std::string&& value);
-  void set_header(const char* value);
-  void set_header(const char* value, size_t size);
-  std::string* mutable_header();
-  std::string* release_header();
-  void set_allocated_header(std::string* header);
+  // string message = 3;
+  void clear_message();
+  const std::string& message() const;
+  void set_message(const std::string& value);
+  void set_message(std::string&& value);
+  void set_message(const char* value);
+  void set_message(const char* value, size_t size);
+  std::string* mutable_message();
+  std::string* release_message();
+  void set_allocated_message(std::string* message);
   private:
-  const std::string& _internal_header() const;
-  void _internal_set_header(const std::string& value);
-  std::string* _internal_mutable_header();
+  const std::string& _internal_message() const;
+  void _internal_set_message(const std::string& value);
+  std::string* _internal_mutable_message();
+  public:
+
+  // bool success = 1;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:protocol.payment.deduction.v1.DeductionAdminResp)
@@ -396,7 +439,8 @@ class DeductionAdminResp :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::protocol::payment::deduction::v1::DeductionStruct > data_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr header_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr message_;
+  bool success_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_deduction_2eproto;
 };
@@ -508,22 +552,21 @@ class DeductionAdminReq :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kHeaderFieldNumber = 1,
+    kDataFieldNumber = 1,
   };
-  // string header = 1;
-  void clear_header();
-  const std::string& header() const;
-  void set_header(const std::string& value);
-  void set_header(std::string&& value);
-  void set_header(const char* value);
-  void set_header(const char* value, size_t size);
-  std::string* mutable_header();
-  std::string* release_header();
-  void set_allocated_header(std::string* header);
+  // .protocol.payment.deduction.v1.DeductionStruct data = 1;
+  bool has_data() const;
   private:
-  const std::string& _internal_header() const;
-  void _internal_set_header(const std::string& value);
-  std::string* _internal_mutable_header();
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::protocol::payment::deduction::v1::DeductionStruct& data() const;
+  ::protocol::payment::deduction::v1::DeductionStruct* release_data();
+  ::protocol::payment::deduction::v1::DeductionStruct* mutable_data();
+  void set_allocated_data(::protocol::payment::deduction::v1::DeductionStruct* data);
+  private:
+  const ::protocol::payment::deduction::v1::DeductionStruct& _internal_data() const;
+  ::protocol::payment::deduction::v1::DeductionStruct* _internal_mutable_data();
   public:
 
   // @@protoc_insertion_point(class_scope:protocol.payment.deduction.v1.DeductionAdminReq)
@@ -531,7 +574,7 @@ class DeductionAdminReq :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr header_;
+  ::protocol::payment::deduction::v1::DeductionStruct* data_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_deduction_2eproto;
 };
@@ -686,68 +729,88 @@ inline void DeductionStruct::set_status(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionStruct.status)
 }
 
+// uint32 id = 4;
+inline void DeductionStruct::clear_id() {
+  id_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 DeductionStruct::_internal_id() const {
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 DeductionStruct::id() const {
+  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionStruct.id)
+  return _internal_id();
+}
+inline void DeductionStruct::_internal_set_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  id_ = value;
+}
+inline void DeductionStruct::set_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionStruct.id)
+}
+
+// uint32 pay_method_id = 5;
+inline void DeductionStruct::clear_pay_method_id() {
+  pay_method_id_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 DeductionStruct::_internal_pay_method_id() const {
+  return pay_method_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 DeductionStruct::pay_method_id() const {
+  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionStruct.pay_method_id)
+  return _internal_pay_method_id();
+}
+inline void DeductionStruct::_internal_set_pay_method_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  pay_method_id_ = value;
+}
+inline void DeductionStruct::set_pay_method_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_pay_method_id(value);
+  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionStruct.pay_method_id)
+}
+
+// uint32 detail_id = 6;
+inline void DeductionStruct::clear_detail_id() {
+  detail_id_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 DeductionStruct::_internal_detail_id() const {
+  return detail_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 DeductionStruct::detail_id() const {
+  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionStruct.detail_id)
+  return _internal_detail_id();
+}
+inline void DeductionStruct::_internal_set_detail_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  detail_id_ = value;
+}
+inline void DeductionStruct::set_detail_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_detail_id(value);
+  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionStruct.detail_id)
+}
+
 // -------------------------------------------------------------------
 
 // DeductionAdminResp
 
-// string header = 1;
-inline void DeductionAdminResp::clear_header() {
-  header_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+// bool success = 1;
+inline void DeductionAdminResp::clear_success() {
+  success_ = false;
 }
-inline const std::string& DeductionAdminResp::header() const {
-  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionAdminResp.header)
-  return _internal_header();
+inline bool DeductionAdminResp::_internal_success() const {
+  return success_;
 }
-inline void DeductionAdminResp::set_header(const std::string& value) {
-  _internal_set_header(value);
-  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionAdminResp.header)
+inline bool DeductionAdminResp::success() const {
+  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionAdminResp.success)
+  return _internal_success();
 }
-inline std::string* DeductionAdminResp::mutable_header() {
-  // @@protoc_insertion_point(field_mutable:protocol.payment.deduction.v1.DeductionAdminResp.header)
-  return _internal_mutable_header();
-}
-inline const std::string& DeductionAdminResp::_internal_header() const {
-  return header_.GetNoArena();
-}
-inline void DeductionAdminResp::_internal_set_header(const std::string& value) {
+inline void DeductionAdminResp::_internal_set_success(bool value) {
   
-  header_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+  success_ = value;
 }
-inline void DeductionAdminResp::set_header(std::string&& value) {
-  
-  header_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.payment.deduction.v1.DeductionAdminResp.header)
-}
-inline void DeductionAdminResp::set_header(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  header_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.payment.deduction.v1.DeductionAdminResp.header)
-}
-inline void DeductionAdminResp::set_header(const char* value, size_t size) {
-  
-  header_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.payment.deduction.v1.DeductionAdminResp.header)
-}
-inline std::string* DeductionAdminResp::_internal_mutable_header() {
-  
-  return header_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* DeductionAdminResp::release_header() {
-  // @@protoc_insertion_point(field_release:protocol.payment.deduction.v1.DeductionAdminResp.header)
-  
-  return header_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void DeductionAdminResp::set_allocated_header(std::string* header) {
-  if (header != nullptr) {
-    
-  } else {
-    
-  }
-  header_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), header);
-  // @@protoc_insertion_point(field_set_allocated:protocol.payment.deduction.v1.DeductionAdminResp.header)
+inline void DeductionAdminResp::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionAdminResp.success)
 }
 
 // repeated .protocol.payment.deduction.v1.DeductionStruct data = 2;
@@ -789,68 +852,128 @@ DeductionAdminResp::data() const {
   return data_;
 }
 
-// -------------------------------------------------------------------
-
-// DeductionAdminReq
-
-// string header = 1;
-inline void DeductionAdminReq::clear_header() {
-  header_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+// string message = 3;
+inline void DeductionAdminResp::clear_message() {
+  message_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline const std::string& DeductionAdminReq::header() const {
-  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionAdminReq.header)
-  return _internal_header();
+inline const std::string& DeductionAdminResp::message() const {
+  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionAdminResp.message)
+  return _internal_message();
 }
-inline void DeductionAdminReq::set_header(const std::string& value) {
-  _internal_set_header(value);
-  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionAdminReq.header)
+inline void DeductionAdminResp::set_message(const std::string& value) {
+  _internal_set_message(value);
+  // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionAdminResp.message)
 }
-inline std::string* DeductionAdminReq::mutable_header() {
-  // @@protoc_insertion_point(field_mutable:protocol.payment.deduction.v1.DeductionAdminReq.header)
-  return _internal_mutable_header();
+inline std::string* DeductionAdminResp::mutable_message() {
+  // @@protoc_insertion_point(field_mutable:protocol.payment.deduction.v1.DeductionAdminResp.message)
+  return _internal_mutable_message();
 }
-inline const std::string& DeductionAdminReq::_internal_header() const {
-  return header_.GetNoArena();
+inline const std::string& DeductionAdminResp::_internal_message() const {
+  return message_.GetNoArena();
 }
-inline void DeductionAdminReq::_internal_set_header(const std::string& value) {
+inline void DeductionAdminResp::_internal_set_message(const std::string& value) {
   
-  header_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+  message_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
 }
-inline void DeductionAdminReq::set_header(std::string&& value) {
+inline void DeductionAdminResp::set_message(std::string&& value) {
   
-  header_.SetNoArena(
+  message_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:protocol.payment.deduction.v1.DeductionAdminReq.header)
+  // @@protoc_insertion_point(field_set_rvalue:protocol.payment.deduction.v1.DeductionAdminResp.message)
 }
-inline void DeductionAdminReq::set_header(const char* value) {
+inline void DeductionAdminResp::set_message(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
-  header_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:protocol.payment.deduction.v1.DeductionAdminReq.header)
+  message_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:protocol.payment.deduction.v1.DeductionAdminResp.message)
 }
-inline void DeductionAdminReq::set_header(const char* value, size_t size) {
+inline void DeductionAdminResp::set_message(const char* value, size_t size) {
   
-  header_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+  message_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:protocol.payment.deduction.v1.DeductionAdminReq.header)
+  // @@protoc_insertion_point(field_set_pointer:protocol.payment.deduction.v1.DeductionAdminResp.message)
 }
-inline std::string* DeductionAdminReq::_internal_mutable_header() {
+inline std::string* DeductionAdminResp::_internal_mutable_message() {
   
-  return header_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  return message_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline std::string* DeductionAdminReq::release_header() {
-  // @@protoc_insertion_point(field_release:protocol.payment.deduction.v1.DeductionAdminReq.header)
+inline std::string* DeductionAdminResp::release_message() {
+  // @@protoc_insertion_point(field_release:protocol.payment.deduction.v1.DeductionAdminResp.message)
   
-  return header_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  return message_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
-inline void DeductionAdminReq::set_allocated_header(std::string* header) {
-  if (header != nullptr) {
+inline void DeductionAdminResp::set_allocated_message(std::string* message) {
+  if (message != nullptr) {
     
   } else {
     
   }
-  header_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), header);
-  // @@protoc_insertion_point(field_set_allocated:protocol.payment.deduction.v1.DeductionAdminReq.header)
+  message_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message);
+  // @@protoc_insertion_point(field_set_allocated:protocol.payment.deduction.v1.DeductionAdminResp.message)
+}
+
+// -------------------------------------------------------------------
+
+// DeductionAdminReq
+
+// .protocol.payment.deduction.v1.DeductionStruct data = 1;
+inline bool DeductionAdminReq::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
+}
+inline bool DeductionAdminReq::has_data() const {
+  return _internal_has_data();
+}
+inline void DeductionAdminReq::clear_data() {
+  if (GetArenaNoVirtual() == nullptr && data_ != nullptr) {
+    delete data_;
+  }
+  data_ = nullptr;
+}
+inline const ::protocol::payment::deduction::v1::DeductionStruct& DeductionAdminReq::_internal_data() const {
+  const ::protocol::payment::deduction::v1::DeductionStruct* p = data_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::protocol::payment::deduction::v1::DeductionStruct*>(
+      &::protocol::payment::deduction::v1::_DeductionStruct_default_instance_);
+}
+inline const ::protocol::payment::deduction::v1::DeductionStruct& DeductionAdminReq::data() const {
+  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionAdminReq.data)
+  return _internal_data();
+}
+inline ::protocol::payment::deduction::v1::DeductionStruct* DeductionAdminReq::release_data() {
+  // @@protoc_insertion_point(field_release:protocol.payment.deduction.v1.DeductionAdminReq.data)
+  
+  ::protocol::payment::deduction::v1::DeductionStruct* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::protocol::payment::deduction::v1::DeductionStruct* DeductionAdminReq::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::protocol::payment::deduction::v1::DeductionStruct>(GetArenaNoVirtual());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::protocol::payment::deduction::v1::DeductionStruct* DeductionAdminReq::mutable_data() {
+  // @@protoc_insertion_point(field_mutable:protocol.payment.deduction.v1.DeductionAdminReq.data)
+  return _internal_mutable_data();
+}
+inline void DeductionAdminReq::set_allocated_data(::protocol::payment::deduction::v1::DeductionStruct* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete data_;
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:protocol.payment.deduction.v1.DeductionAdminReq.data)
 }
 
 #ifdef __GNUC__
