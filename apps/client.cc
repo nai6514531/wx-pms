@@ -7,14 +7,17 @@
 #include "apps/3rd/json.hpp"
 
 using namespace std;
+using nlohmann::json;
+
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::Status;
 
 
 using protocol::payment::deduction::v1::DeductionAdminApi;
-using protocol::payment::deduction::v1::DeductionAdminReq;
-using protocol::payment::deduction::v1::DeductionAdminResp;
+using protocol::payment::deduction::v1::DeductionReq;
+using protocol::payment::deduction::v1::DeductionResp;
+using protocol::payment::deduction::v1::DeductionStruct;
 
 using utils::CmdMap;
 
@@ -27,6 +30,10 @@ class DeductionAdmin
         {
             reqHandlers = {
                 {"getlist", &DeductionAdmin::getList},
+                {"getexpiredlist", &DeductionAdmin::getExpiredList},
+                {"close", &DeductionAdmin::closeDeduction},
+                {"open", &DeductionAdmin::openDeduction},
+                {"create", &DeductionAdmin::createDeduction},
             };
             printOp.add_whitespace = true;
             printOp.always_print_primitive_fields = true;
@@ -46,11 +53,57 @@ class DeductionAdmin
     private:
         void getList(string data)
         {
-            DeductionAdminReq req;
-            // JsonStringToMessage(data, &req, parseOp);
-            DeductionAdminResp resp;
+            DeductionReq req;
+            DeductionResp resp;
             ClientContext ctx;
             Status status = stub_->GetDeductionList(&ctx, req, &resp);
+            string printJ;
+            MessageToJsonString(resp, &printJ, printOp);
+            cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
+            cout << printJ << endl;
+        }
+        void getExpiredList(string data)
+        {
+            DeductionReq req;
+            DeductionResp resp;
+            ClientContext ctx;
+            Status status = stub_->GetExpiredDeductionList(&ctx, req, &resp);
+            string printJ;
+            MessageToJsonString(resp, &printJ, printOp);
+            cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
+            cout << printJ << endl;
+        }
+        void closeDeduction(string data)
+        {
+            DeductionReq req;
+            DeductionResp resp;
+            ClientContext ctx;
+            JsonStringToMessage(data, &req, parseOp);
+            Status status = stub_->CloseDeduction(&ctx, req, &resp);
+            string printJ;
+            MessageToJsonString(resp, &printJ, printOp);
+            cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
+            cout << printJ << endl;
+        }
+        void openDeduction(string data)
+        {
+            DeductionReq req;
+            DeductionResp resp;
+            ClientContext ctx;
+            JsonStringToMessage(data, &req, parseOp);
+            Status status = stub_->OpenDeduction(&ctx, req, &resp);
+            string printJ;
+            MessageToJsonString(resp, &printJ, printOp);
+            cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
+            cout << printJ << endl;
+        }
+        void createDeduction(string data)
+        {
+            DeductionReq req;
+            DeductionResp resp;
+            ClientContext ctx;
+            JsonStringToMessage(data, &req, parseOp);
+            Status status = stub_->CreateDeduction(&ctx, req, &resp);
             string printJ;
             MessageToJsonString(resp, &printJ, printOp);
             cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
@@ -68,7 +121,27 @@ class DeductionAdmin
 CmdMap cmdMap = {
     {
         "getlist", {
-            {"(no args)", "eg:config set {\"kick_mode\":1}"},
+            {"(no args)", "eg:getlist"},
+        }
+    },
+    {
+        "getexpiredlist", {
+            {"(no args)", "eg:getexpiredlist"},
+        }
+    },
+    {
+        "open", {
+            {"(args)", "eg:opend {\"id\":1}"},
+        }
+    },
+    {
+        "close", {
+            {"(args)", "eg:close {\"id\":1}"},
+        }
+    },
+    {
+        "create", {
+            {"(args)", "eg:create {\"id\":1,\"title\":\"测试\",\"desc\":\"程序添加进去的\"}"},
         }
     },
     {
@@ -87,9 +160,7 @@ CmdMap cmdMap = {
 vector<string> quits = {"exit"};
 vector<string> helps = {"help"};
 string adminPrompt = "admin> ";
-string _exitPrompt = "Au revoir.\n";
-string defaultAddr = "127.0.0.1:12345";
-string _helpPrompt = "type `help` for admin commands info\n";
+string _exitPrompt = "See you.\n";
 string errorPrompt = "Invalid command, letters(a-zA-Z) only. Try `help` for more.\n";
 
 

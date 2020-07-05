@@ -25,6 +25,11 @@ cc_library(
     deps = [":3rd_json"]
 )
 
+cc_library(
+    name = "utils_enum",
+    hdrs = ["utils/enum.hpp"],
+)
+
 
 cc_library(
     name = "3rd_mysqlplus",
@@ -66,6 +71,7 @@ cc_binary(
         "//apis:deduction",
         ":3rd_mysqlplus",
         ":3rd_json",
-        ":utils_config"
+        ":utils_config",
+        ":utils_enum"
     ],
 )

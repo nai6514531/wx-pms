@@ -1,8 +1,6 @@
-#ifndef CONFIG_HPP
-#define CONFIG_HPP
+#ifndef UTILS_CONFIG_HPP
+#define UTILS_CONFIG_HPP
 
-#include <mutex>
-#include <shared_mutex>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -14,10 +12,6 @@
 namespace utils
 {
     using std::ifstream;
-    using std::shared_lock;
-    using std::shared_mutex;
-    using std::string;
-    using std::unique_lock;
     using std::string;
 
     using nlohmann::json;

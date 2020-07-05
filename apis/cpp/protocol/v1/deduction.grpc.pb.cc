@@ -26,7 +26,10 @@ namespace v1 {
 
 static const char* DeductionAdminApi_method_names[] = {
   "/protocol.payment.deduction.v1.DeductionAdminApi/GetDeductionList",
-  "/protocol.payment.deduction.v1.DeductionAdminApi/AdminOp",
+  "/protocol.payment.deduction.v1.DeductionAdminApi/GetExpiredDeductionList",
+  "/protocol.payment.deduction.v1.DeductionAdminApi/OpenDeduction",
+  "/protocol.payment.deduction.v1.DeductionAdminApi/CloseDeduction",
+  "/protocol.payment.deduction.v1.DeductionAdminApi/CreateDeduction",
 };
 
 std::unique_ptr< DeductionAdminApi::Stub> DeductionAdminApi::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,99 +40,237 @@ std::unique_ptr< DeductionAdminApi::Stub> DeductionAdminApi::NewStub(const std::
 
 DeductionAdminApi::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_GetDeductionList_(DeductionAdminApi_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_AdminOp_(DeductionAdminApi_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetExpiredDeductionList_(DeductionAdminApi_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_OpenDeduction_(DeductionAdminApi_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CloseDeduction_(DeductionAdminApi_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CreateDeduction_(DeductionAdminApi_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status DeductionAdminApi::Stub::GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) {
+::grpc::Status DeductionAdminApi::Stub::GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetDeductionList_, context, request, response);
 }
 
-void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)> f) {
+void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDeductionList_, context, request, response, std::move(f));
 }
 
-void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)> f) {
+void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetDeductionList_, context, request, response, std::move(f));
 }
 
-void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDeductionList_, context, request, response, reactor);
 }
 
-void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+void DeductionAdminApi::Stub::experimental_async::GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetDeductionList_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* DeductionAdminApi::Stub::AsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionAdminResp>::Create(channel_.get(), cq, rpcmethod_GetDeductionList_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::AsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_GetDeductionList_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* DeductionAdminApi::Stub::PrepareAsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionAdminResp>::Create(channel_.get(), cq, rpcmethod_GetDeductionList_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::PrepareAsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_GetDeductionList_, context, request, false);
 }
 
-::grpc::Status DeductionAdminApi::Stub::AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_AdminOp_, context, request, response);
+::grpc::Status DeductionAdminApi::Stub::GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetExpiredDeductionList_, context, request, response);
 }
 
-void DeductionAdminApi::Stub::experimental_async::AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_AdminOp_, context, request, response, std::move(f));
+void DeductionAdminApi::Stub::experimental_async::GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetExpiredDeductionList_, context, request, response, std::move(f));
 }
 
-void DeductionAdminApi::Stub::experimental_async::AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_AdminOp_, context, request, response, std::move(f));
+void DeductionAdminApi::Stub::experimental_async::GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetExpiredDeductionList_, context, request, response, std::move(f));
 }
 
-void DeductionAdminApi::Stub::experimental_async::AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_AdminOp_, context, request, response, reactor);
+void DeductionAdminApi::Stub::experimental_async::GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetExpiredDeductionList_, context, request, response, reactor);
 }
 
-void DeductionAdminApi::Stub::experimental_async::AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_AdminOp_, context, request, response, reactor);
+void DeductionAdminApi::Stub::experimental_async::GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetExpiredDeductionList_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* DeductionAdminApi::Stub::AsyncAdminOpRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionAdminResp>::Create(channel_.get(), cq, rpcmethod_AdminOp_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::AsyncGetExpiredDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_GetExpiredDeductionList_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* DeductionAdminApi::Stub::PrepareAsyncAdminOpRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionAdminResp>::Create(channel_.get(), cq, rpcmethod_AdminOp_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::PrepareAsyncGetExpiredDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_GetExpiredDeductionList_, context, request, false);
+}
+
+::grpc::Status DeductionAdminApi::Stub::OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_OpenDeduction_, context, request, response);
+}
+
+void DeductionAdminApi::Stub::experimental_async::OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OpenDeduction_, context, request, response, std::move(f));
+}
+
+void DeductionAdminApi::Stub::experimental_async::OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_OpenDeduction_, context, request, response, std::move(f));
+}
+
+void DeductionAdminApi::Stub::experimental_async::OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OpenDeduction_, context, request, response, reactor);
+}
+
+void DeductionAdminApi::Stub::experimental_async::OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_OpenDeduction_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::AsyncOpenDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_OpenDeduction_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::PrepareAsyncOpenDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_OpenDeduction_, context, request, false);
+}
+
+::grpc::Status DeductionAdminApi::Stub::CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CloseDeduction_, context, request, response);
+}
+
+void DeductionAdminApi::Stub::experimental_async::CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CloseDeduction_, context, request, response, std::move(f));
+}
+
+void DeductionAdminApi::Stub::experimental_async::CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CloseDeduction_, context, request, response, std::move(f));
+}
+
+void DeductionAdminApi::Stub::experimental_async::CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CloseDeduction_, context, request, response, reactor);
+}
+
+void DeductionAdminApi::Stub::experimental_async::CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CloseDeduction_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::AsyncCloseDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_CloseDeduction_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::PrepareAsyncCloseDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_CloseDeduction_, context, request, false);
+}
+
+::grpc::Status DeductionAdminApi::Stub::CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CreateDeduction_, context, request, response);
+}
+
+void DeductionAdminApi::Stub::experimental_async::CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateDeduction_, context, request, response, std::move(f));
+}
+
+void DeductionAdminApi::Stub::experimental_async::CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CreateDeduction_, context, request, response, std::move(f));
+}
+
+void DeductionAdminApi::Stub::experimental_async::CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateDeduction_, context, request, response, reactor);
+}
+
+void DeductionAdminApi::Stub::experimental_async::CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CreateDeduction_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::AsyncCreateDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_CreateDeduction_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* DeductionAdminApi::Stub::PrepareAsyncCreateDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::protocol::payment::deduction::v1::DeductionResp>::Create(channel_.get(), cq, rpcmethod_CreateDeduction_, context, request, false);
 }
 
 DeductionAdminApi::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DeductionAdminApi_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>(
+      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
           [](DeductionAdminApi::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::protocol::payment::deduction::v1::DeductionAdminReq* req,
-             ::protocol::payment::deduction::v1::DeductionAdminResp* resp) {
+             const ::protocol::payment::deduction::v1::DeductionReq* req,
+             ::protocol::payment::deduction::v1::DeductionResp* resp) {
                return service->GetDeductionList(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DeductionAdminApi_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>(
+      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
           [](DeductionAdminApi::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::protocol::payment::deduction::v1::DeductionAdminReq* req,
-             ::protocol::payment::deduction::v1::DeductionAdminResp* resp) {
-               return service->AdminOp(ctx, req, resp);
+             const ::protocol::payment::deduction::v1::DeductionReq* req,
+             ::protocol::payment::deduction::v1::DeductionResp* resp) {
+               return service->GetExpiredDeductionList(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DeductionAdminApi_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+          [](DeductionAdminApi::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::protocol::payment::deduction::v1::DeductionReq* req,
+             ::protocol::payment::deduction::v1::DeductionResp* resp) {
+               return service->OpenDeduction(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DeductionAdminApi_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+          [](DeductionAdminApi::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::protocol::payment::deduction::v1::DeductionReq* req,
+             ::protocol::payment::deduction::v1::DeductionResp* resp) {
+               return service->CloseDeduction(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DeductionAdminApi_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DeductionAdminApi::Service, ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+          [](DeductionAdminApi::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::protocol::payment::deduction::v1::DeductionReq* req,
+             ::protocol::payment::deduction::v1::DeductionResp* resp) {
+               return service->CreateDeduction(ctx, req, resp);
              }, this)));
 }
 
 DeductionAdminApi::Service::~Service() {
 }
 
-::grpc::Status DeductionAdminApi::Service::GetDeductionList(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) {
+::grpc::Status DeductionAdminApi::Service::GetDeductionList(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status DeductionAdminApi::Service::AdminOp(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) {
+::grpc::Status DeductionAdminApi::Service::GetExpiredDeductionList(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DeductionAdminApi::Service::OpenDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DeductionAdminApi::Service::CloseDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DeductionAdminApi::Service::CreateDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) {
   (void) context;
   (void) request;
   (void) response;

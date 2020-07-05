@@ -40,46 +40,113 @@ class DeductionAdminApi final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>> AsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>>(AsyncGetDeductionListRaw(context, request, cq));
+    // 获取扣费服务列表
+    virtual ::grpc::Status GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> AsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncGetDeductionListRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>> PrepareAsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>>(PrepareAsyncGetDeductionListRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncGetDeductionListRaw(context, request, cq));
     }
-    virtual ::grpc::Status AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>> AsyncAdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>>(AsyncAdminOpRaw(context, request, cq));
+    // 获取已失效扣费服务列表
+    virtual ::grpc::Status GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> AsyncGetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncGetExpiredDeductionListRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>> PrepareAsyncAdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>>(PrepareAsyncAdminOpRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncGetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncGetExpiredDeductionListRaw(context, request, cq));
+    }
+    // 开通扣费服务
+    virtual ::grpc::Status OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> AsyncOpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncOpenDeductionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncOpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncOpenDeductionRaw(context, request, cq));
+    }
+    // 关闭扣费服务
+    virtual ::grpc::Status CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> AsyncCloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncCloseDeductionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncCloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncCloseDeductionRaw(context, request, cq));
+    }
+    // //新增扣费服务
+    virtual ::grpc::Status CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> AsyncCreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncCreateDeductionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncCreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncCreateDeductionRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      virtual void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) = 0;
+      // 获取扣费服务列表
+      virtual void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      virtual void AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) = 0;
+      // 获取已失效扣费服务列表
+      virtual void GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // 开通扣费服务
+      virtual void OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // 关闭扣费服务
+      virtual void CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // //新增扣费服务
+      virtual void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -90,54 +157,117 @@ class DeductionAdminApi final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>* AsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>* PrepareAsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>* AsyncAdminOpRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionAdminResp>* PrepareAsyncAdminOpRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* AsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* AsyncGetExpiredDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncGetExpiredDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* AsyncOpenDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncOpenDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* AsyncCloseDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncCloseDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* AsyncCreateDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncCreateDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>> AsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>>(AsyncGetDeductionListRaw(context, request, cq));
+    ::grpc::Status GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> AsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncGetDeductionListRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>> PrepareAsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>>(PrepareAsyncGetDeductionListRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncGetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncGetDeductionListRaw(context, request, cq));
     }
-    ::grpc::Status AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>> AsyncAdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>>(AsyncAdminOpRaw(context, request, cq));
+    ::grpc::Status GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> AsyncGetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncGetExpiredDeductionListRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>> PrepareAsyncAdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>>(PrepareAsyncAdminOpRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncGetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncGetExpiredDeductionListRaw(context, request, cq));
+    }
+    ::grpc::Status OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> AsyncOpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncOpenDeductionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncOpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncOpenDeductionRaw(context, request, cq));
+    }
+    ::grpc::Status CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> AsyncCloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncCloseDeductionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncCloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncCloseDeductionRaw(context, request, cq));
+    }
+    ::grpc::Status CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> AsyncCreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncCreateDeductionRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncCreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncCreateDeductionRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) override;
-      void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) override;
+      void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
-      void AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) override;
-      void AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, std::function<void(::grpc::Status)>) override;
+      void GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      void GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void AdminOp(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetExpiredDeductionList(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void AdminOp(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void GetExpiredDeductionList(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      void OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void OpenDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void OpenDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -150,12 +280,21 @@ class DeductionAdminApi final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* AsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* PrepareAsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* AsyncAdminOpRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionAdminResp>* PrepareAsyncAdminOpRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* AsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncGetDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* AsyncGetExpiredDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncGetExpiredDeductionListRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* AsyncOpenDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncOpenDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* AsyncCloseDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncCloseDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* AsyncCreateDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::protocol::payment::deduction::v1::DeductionResp>* PrepareAsyncCreateDeductionRaw(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetDeductionList_;
-    const ::grpc::internal::RpcMethod rpcmethod_AdminOp_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetExpiredDeductionList_;
+    const ::grpc::internal::RpcMethod rpcmethod_OpenDeduction_;
+    const ::grpc::internal::RpcMethod rpcmethod_CloseDeduction_;
+    const ::grpc::internal::RpcMethod rpcmethod_CreateDeduction_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -163,8 +302,16 @@ class DeductionAdminApi final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetDeductionList(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response);
-    virtual ::grpc::Status AdminOp(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response);
+    // 获取扣费服务列表
+    virtual ::grpc::Status GetDeductionList(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
+    // 获取已失效扣费服务列表
+    virtual ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
+    // 开通扣费服务
+    virtual ::grpc::Status OpenDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
+    // 关闭扣费服务
+    virtual ::grpc::Status CloseDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
+    // //新增扣费服务
+    virtual ::grpc::Status CreateDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetDeductionList : public BaseClass {
@@ -178,35 +325,95 @@ class DeductionAdminApi final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetDeductionList(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionAdminResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetDeductionList(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_AdminOp : public BaseClass {
+  class WithAsyncMethod_GetExpiredDeductionList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_AdminOp() {
+    WithAsyncMethod_GetExpiredDeductionList() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_AdminOp() override {
+    ~WithAsyncMethod_GetExpiredDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AdminOp(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestAdminOp(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionAdminResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetExpiredDeductionList(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetDeductionList<WithAsyncMethod_AdminOp<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_OpenDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_OpenDeduction() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_OpenDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status OpenDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestOpenDeduction(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CloseDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CloseDeduction() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_CloseDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CloseDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCloseDeduction(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_CreateDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CreateDeduction() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_CreateDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateDeduction(::grpc::ServerContext* context, ::protocol::payment::deduction::v1::DeductionReq* request, ::grpc::ServerAsyncResponseWriter< ::protocol::payment::deduction::v1::DeductionResp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetDeductionList<WithAsyncMethod_GetExpiredDeductionList<WithAsyncMethod_OpenDeduction<WithAsyncMethod_CloseDeduction<WithAsyncMethod_CreateDeduction<Service > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetDeductionList : public BaseClass {
    private:
@@ -219,93 +426,234 @@ class DeductionAdminApi final {
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) { return this->GetDeductionList(context, request, response); }));}
+                     context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) { return this->GetDeductionList(context, request, response); }));}
     void SetMessageAllocatorFor_GetDeductionList(
-        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_GetDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* GetDeductionList(
-      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* GetDeductionList(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
     #endif
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithCallbackMethod_AdminOp : public BaseClass {
+  class ExperimentalWithCallbackMethod_GetExpiredDeductionList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithCallbackMethod_AdminOp() {
+    ExperimentalWithCallbackMethod_GetExpiredDeductionList() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
       ::grpc::Service::experimental().
     #endif
         MarkMethodCallback(1,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>(
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::protocol::payment::deduction::v1::DeductionAdminReq* request, ::protocol::payment::deduction::v1::DeductionAdminResp* response) { return this->AdminOp(context, request, response); }));}
-    void SetMessageAllocatorFor_AdminOp(
-        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>* allocator) {
+                     context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) { return this->GetExpiredDeductionList(context, request, response); }));}
+    void SetMessageAllocatorFor_GetExpiredDeductionList(
+        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
     #else
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~ExperimentalWithCallbackMethod_AdminOp() override {
+    ~ExperimentalWithCallbackMethod_GetExpiredDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AdminOp(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* AdminOp(
-      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/)
+    virtual ::grpc::ServerUnaryReactor* GetExpiredDeductionList(
+      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* AdminOp(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/)
+    virtual ::grpc::experimental::ServerUnaryReactor* GetExpiredDeductionList(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_OpenDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_OpenDeduction() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) { return this->OpenDeduction(context, request, response); }));}
+    void SetMessageAllocatorFor_OpenDeduction(
+        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_OpenDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status OpenDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* OpenDeduction(
+      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* OpenDeduction(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_CloseDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_CloseDeduction() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) { return this->CloseDeduction(context, request, response); }));}
+    void SetMessageAllocatorFor_CloseDeduction(
+        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_CloseDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CloseDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CloseDeduction(
+      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CloseDeduction(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_CreateDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_CreateDeduction() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response) { return this->CreateDeduction(context, request, response); }));}
+    void SetMessageAllocatorFor_CreateDeduction(
+        ::grpc::experimental::MessageAllocator< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(4);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_CreateDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CreateDeduction(
+      ::grpc::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CreateDeduction(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/)
     #endif
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetDeductionList<ExperimentalWithCallbackMethod_AdminOp<Service > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_GetDeductionList<ExperimentalWithCallbackMethod_GetExpiredDeductionList<ExperimentalWithCallbackMethod_OpenDeduction<ExperimentalWithCallbackMethod_CloseDeduction<ExperimentalWithCallbackMethod_CreateDeduction<Service > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_GetDeductionList<ExperimentalWithCallbackMethod_AdminOp<Service > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_GetDeductionList<ExperimentalWithCallbackMethod_GetExpiredDeductionList<ExperimentalWithCallbackMethod_OpenDeduction<ExperimentalWithCallbackMethod_CloseDeduction<ExperimentalWithCallbackMethod_CreateDeduction<Service > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetDeductionList : public BaseClass {
    private:
@@ -318,24 +666,75 @@ class DeductionAdminApi final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_AdminOp : public BaseClass {
+  class WithGenericMethod_GetExpiredDeductionList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_AdminOp() {
+    WithGenericMethod_GetExpiredDeductionList() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_AdminOp() override {
+    ~WithGenericMethod_GetExpiredDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AdminOp(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_OpenDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_OpenDeduction() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_OpenDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status OpenDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CloseDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CloseDeduction() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_CloseDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CloseDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CreateDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CreateDeduction() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_CreateDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -352,7 +751,7 @@ class DeductionAdminApi final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -361,23 +760,83 @@ class DeductionAdminApi final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_AdminOp : public BaseClass {
+  class WithRawMethod_GetExpiredDeductionList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_AdminOp() {
+    WithRawMethod_GetExpiredDeductionList() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_AdminOp() override {
+    ~WithRawMethod_GetExpiredDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AdminOp(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestAdminOp(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetExpiredDeductionList(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_OpenDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_OpenDeduction() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_OpenDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status OpenDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestOpenDeduction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CloseDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CloseDeduction() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_CloseDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CloseDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCloseDeduction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_CreateDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CreateDeduction() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_CreateDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreateDeduction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -405,7 +864,7 @@ class DeductionAdminApi final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -419,11 +878,11 @@ class DeductionAdminApi final {
       { return nullptr; }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_AdminOp : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_GetExpiredDeductionList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_AdminOp() {
+    ExperimentalWithRawCallbackMethod_GetExpiredDeductionList() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
@@ -437,21 +896,135 @@ class DeductionAdminApi final {
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->AdminOp(context, request, response); }));
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetExpiredDeductionList(context, request, response); }));
     }
-    ~ExperimentalWithRawCallbackMethod_AdminOp() override {
+    ~ExperimentalWithRawCallbackMethod_GetExpiredDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status AdminOp(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-    virtual ::grpc::ServerUnaryReactor* AdminOp(
+    virtual ::grpc::ServerUnaryReactor* GetExpiredDeductionList(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #else
-    virtual ::grpc::experimental::ServerUnaryReactor* AdminOp(
+    virtual ::grpc::experimental::ServerUnaryReactor* GetExpiredDeductionList(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_OpenDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_OpenDeduction() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->OpenDeduction(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_OpenDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status OpenDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* OpenDeduction(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* OpenDeduction(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_CloseDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_CloseDeduction() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CloseDeduction(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_CloseDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CloseDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CloseDeduction(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CloseDeduction(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_CreateDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_CreateDeduction() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(4,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CreateDeduction(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_CreateDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CreateDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* CreateDeduction(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* CreateDeduction(
       ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
     #endif
       { return nullptr; }
@@ -464,10 +1037,10 @@ class DeductionAdminApi final {
     WithStreamedUnaryMethod_GetDeductionList() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>(
+          ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
             [this](::grpc_impl::ServerContext* context,
                    ::grpc_impl::ServerUnaryStreamer<
-                     ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>* streamer) {
+                     ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* streamer) {
                        return this->StreamedGetDeductionList(context,
                          streamer);
                   }));
@@ -476,43 +1049,124 @@ class DeductionAdminApi final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetDeductionList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionAdminReq,::protocol::payment::deduction::v1::DeductionAdminResp>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetDeductionList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionReq,::protocol::payment::deduction::v1::DeductionResp>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_AdminOp : public BaseClass {
+  class WithStreamedUnaryMethod_GetExpiredDeductionList : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_AdminOp() {
+    WithStreamedUnaryMethod_GetExpiredDeductionList() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>(
+          ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
             [this](::grpc_impl::ServerContext* context,
                    ::grpc_impl::ServerUnaryStreamer<
-                     ::protocol::payment::deduction::v1::DeductionAdminReq, ::protocol::payment::deduction::v1::DeductionAdminResp>* streamer) {
-                       return this->StreamedAdminOp(context,
+                     ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* streamer) {
+                       return this->StreamedGetExpiredDeductionList(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_AdminOp() override {
+    ~WithStreamedUnaryMethod_GetExpiredDeductionList() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status AdminOp(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionAdminReq* /*request*/, ::protocol::payment::deduction::v1::DeductionAdminResp* /*response*/) override {
+    ::grpc::Status GetExpiredDeductionList(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedAdminOp(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionAdminReq,::protocol::payment::deduction::v1::DeductionAdminResp>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetExpiredDeductionList(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionReq,::protocol::payment::deduction::v1::DeductionResp>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetDeductionList<WithStreamedUnaryMethod_AdminOp<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_OpenDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_OpenDeduction() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* streamer) {
+                       return this->StreamedOpenDeduction(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_OpenDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status OpenDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedOpenDeduction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionReq,::protocol::payment::deduction::v1::DeductionResp>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CloseDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CloseDeduction() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* streamer) {
+                       return this->StreamedCloseDeduction(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CloseDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CloseDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCloseDeduction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionReq,::protocol::payment::deduction::v1::DeductionResp>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CreateDeduction : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CreateDeduction() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::protocol::payment::deduction::v1::DeductionReq, ::protocol::payment::deduction::v1::DeductionResp>* streamer) {
+                       return this->StreamedCreateDeduction(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CreateDeduction() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CreateDeduction(::grpc::ServerContext* /*context*/, const ::protocol::payment::deduction::v1::DeductionReq* /*request*/, ::protocol::payment::deduction::v1::DeductionResp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCreateDeduction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::protocol::payment::deduction::v1::DeductionReq,::protocol::payment::deduction::v1::DeductionResp>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_GetDeductionList<WithStreamedUnaryMethod_GetExpiredDeductionList<WithStreamedUnaryMethod_OpenDeduction<WithStreamedUnaryMethod_CloseDeduction<WithStreamedUnaryMethod_CreateDeduction<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetDeductionList<WithStreamedUnaryMethod_AdminOp<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_GetDeductionList<WithStreamedUnaryMethod_GetExpiredDeductionList<WithStreamedUnaryMethod_OpenDeduction<WithStreamedUnaryMethod_CloseDeduction<WithStreamedUnaryMethod_CreateDeduction<Service > > > > > StreamedService;
 };
 
 }  // namespace v1
