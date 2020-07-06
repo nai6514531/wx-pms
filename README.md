@@ -45,15 +45,16 @@
 
 用户与 `client` 端交互时，采用 `命令 JSON包体` 的格式，`client` 解析 `JSON` 包体并转为 `protobuf` 格式， `client` 与 `server` 交互采用 `grpc/protobuf`， `server`端再与 `mysql` 进行通信;
 
-`client` 和 `admin` 收到 `server` 返回，以及 `server` 收到 `client` 和 `admin` 的请求，都做了转 `JSON` 输出，方便查看。 
+`client` 收到 `server` 返回，做了转 `JSON` 输出，方便查看。 
 
 ### 接口和协议
 
-对 `DeductionResp` 一些说明：
-`success` 表示服务端处理是否成功
-`message` 消息提示信息
-`code` 返回码，定义了系统异常的枚举
-`data` 服务端返回的数据结构体
+对 `DeductionResp` 的一些说明：
+
+* `success` 表示服务端处理是否成功
+* `message` 消息提示信息
+* `code` 返回码，定义了系统异常的枚举
+* `data` 服务端返回的数据结构体
 
 详细 `proto` 设计可见 [./apis/protocol/v1/deduction.proto](./apis/protocol/v1/deduction.proto)
 
@@ -154,12 +155,6 @@ apis:
 apps:
 	bazel build -c dbg --spawn_strategy=standalone --cxxopt='-std=c++17' //apps:all
 
-server:
-	bazel run --cxxopt='-std=c++17' //apps:server
-
-client:
-	bazel run --cxxopt='-std=c++17' //apps:client
-
 all: proto apis build
 
 clean:
@@ -167,13 +162,10 @@ clean:
 	rm -f *.log
 	bazel clean
 ```
-make proto: 用于生成c++版本的proto。
-make apis: 构建接口的依赖。
-make apps: 构建app的依赖。
-
-用户需要在项目目录下运行make all
-启动客户端 ./bazel-bin/apps/client
-启动服务端 ./bazel-bin/apps/server
+* make proto: 用于生成c++版本的proto。
+* make apis: 构建接口的依赖。
+* make apps: 构建app的依赖。
+* 用户需要在项目目录下运行make all，启动客户端执行./bazel-bin/apps/client，启动服务端执行./bazel-bin/apps/server。
 
 ### 三方依赖
 
@@ -188,7 +180,7 @@ make apps: 构建app的依赖。
 
 首先需要配置对应的数据库和服务器，配置可见 `confs` 目录。对配置文件的说明如下：
 
-配置里的对象全部可以 `JSON` 对象序列化和反序列化，关联的 `JSON` 字段见 `defs.hpp` 和 `connect_options_jsonify.hpp`，除了 `DB` 连接选项外，其他字段都是必选字段。
+配置里的对象全部可以 `JSON` 对象序列化和反序列化，关联的 `JSON` 字段见 `config.hpp`。
 
 ```json
 {
@@ -206,9 +198,8 @@ make apps: 构建app的依赖。
   }
 }
 ```
-`help` 命令：
 
-对 `client`:
+对客户端操作的命令: 执行客户端，输入 `help` 命令。
 
 ```
 --------------------------------------------------------------------------------
