@@ -6,14 +6,12 @@
 #include <fstream>
 #include <sstream>
 #include <memory>
-
 #include "apps/3rd/json.hpp"
 
 namespace utils
 {
     using std::ifstream;
     using std::string;
-
     using nlohmann::json;
 
     struct SvrConfig

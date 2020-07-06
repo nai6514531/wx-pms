@@ -1,41 +1,38 @@
 syntax = "proto3";
 
-import public "google/protobuf/timestamp.proto";
-
 package protocol.payment.deduction.v1;
 
 // The greeting service definition.
 service DeductionAdminApi {
-  // 获取扣费服务列表
-  rpc GetDeductionList(DeductionReq) returns (DeductionResp) {}
-  // 获取已失效扣费服务列表
-  rpc GetExpiredDeductionList(DeductionReq) returns (DeductionResp) {}
-  // 开通扣费服务
-  rpc OpenDeduction(DeductionReq) returns (DeductionResp) {}
-  //关闭扣费服务
-  rpc CloseDeduction(DeductionReq) returns (DeductionResp) {}
-  // //新增扣费服务
-  rpc CreateDeduction(DeductionReq) returns (DeductionResp) {}
+    // 获取扣费服务列表
+    rpc GetDeductionList(DeductionReq) returns (DeductionResp) {}
+    // 获取已失效扣费服务列表
+    rpc GetExpiredDeductionList(DeductionReq) returns (DeductionResp) {}
+    // 开通扣费服务
+    rpc OpenDeduction(DeductionReq) returns (DeductionResp) {}
+    //关闭扣费服务
+    rpc CloseDeduction(DeductionReq) returns (DeductionResp) {}
+    // 新增扣费服务
+    rpc CreateDeduction(DeductionReq) returns (DeductionResp) {}
 }
 message DeductionStruct {
-  string title = 1;
-  string desc = 2;
-  uint32 status = 3;
-  uint32 id = 4;
-  uint32 pay_method_id = 5;
-  google.protobuf.Timestamp start_time = 6;
+    string title = 1;
+    string desc = 2;
+    uint32 status = 3;
+    uint32 id = 4;
+    uint32 pay_method_id = 5;
 }
 
 message DeductionResp {
-  bool success = 1;
-  repeated DeductionStruct data = 2;
-  string message = 3;
-  uint32 code = 4;
+    bool success = 1;
+    repeated DeductionStruct data = 2;
+    string message = 3;
+    uint32 code = 4;
 }
 
 message DeductionReq {
-  string title = 1;
-  string desc = 2;
-  uint32 pay_method_id = 3;
-  uint32 id = 4;
+    string title = 1;
+    string desc = 2;
+    uint32 pay_method_id = 3;
+    uint32 id = 4;
 }

@@ -51,6 +51,7 @@ class DeductionAdmin
             (this->*(it->second))(data);
         }
     private:
+        // 获取生效中的记录 
         void getList(string data)
         {
             DeductionReq req;
@@ -62,6 +63,7 @@ class DeductionAdmin
             cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
             cout << printJ << endl;
         }
+        // 获取已失效的记录
         void getExpiredList(string data)
         {
             DeductionReq req;
@@ -73,6 +75,7 @@ class DeductionAdmin
             cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
             cout << printJ << endl;
         }
+        // 关闭扣费服务
         void closeDeduction(string data)
         {
             DeductionReq req;
@@ -85,6 +88,7 @@ class DeductionAdmin
             cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
             cout << printJ << endl;
         }
+        // 开通扣费服务
         void openDeduction(string data)
         {
             DeductionReq req;
@@ -97,6 +101,7 @@ class DeductionAdmin
             cout << "\ngrpc code:" << status.error_code() << " , msg:" << status.error_message() << endl;
             cout << printJ << endl;
         }
+        // 新增扣费服务
         void createDeduction(string data)
         {
             DeductionReq req;
@@ -118,6 +123,7 @@ class DeductionAdmin
         unordered_map<string, func> reqHandlers;
 };
 
+// 定义命令行map集合
 CmdMap cmdMap = {
     {
         "getlist", {
@@ -131,7 +137,7 @@ CmdMap cmdMap = {
     },
     {
         "open", {
-            {"(args)", "eg:opend {\"id\":1}"},
+            {"(args)", "eg:open {\"id\":1}"},
         }
     },
     {
@@ -141,7 +147,7 @@ CmdMap cmdMap = {
     },
     {
         "create", {
-            {"(args)", "eg:create {\"id\":1,\"title\":\"测试\",\"desc\":\"程序添加进去的\"}"},
+            {"(args)", "eg:create {\"title\":\"测试\",\"desc\":\"程序添加进去的\"}"},
         }
     },
     {

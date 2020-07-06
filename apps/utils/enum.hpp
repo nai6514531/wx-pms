@@ -15,6 +15,7 @@ namespace utils {
         NO_RECORD,
         CREATE_ERROR,
     };
+    // 表示扣费服务的状态
     enum DeductionStatus
     {
         NORMAL = 0,

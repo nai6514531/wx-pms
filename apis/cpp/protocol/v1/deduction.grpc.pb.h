@@ -72,7 +72,7 @@ class DeductionAdminApi final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> PrepareAsyncCloseDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(PrepareAsyncCloseDeductionRaw(context, request, cq));
     }
-    // //新增扣费服务
+    // 新增扣费服务
     virtual ::grpc::Status CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::protocol::payment::deduction::v1::DeductionResp* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>> AsyncCreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::protocol::payment::deduction::v1::DeductionResp>>(AsyncCreateDeductionRaw(context, request, cq));
@@ -135,7 +135,7 @@ class DeductionAdminApi final {
       #else
       virtual void CloseDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
-      // //新增扣费服务
+      // 新增扣费服务
       virtual void CreateDeduction(::grpc::ClientContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
       virtual void CreateDeduction(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::protocol::payment::deduction::v1::DeductionResp* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -310,7 +310,7 @@ class DeductionAdminApi final {
     virtual ::grpc::Status OpenDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
     // 关闭扣费服务
     virtual ::grpc::Status CloseDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
-    // //新增扣费服务
+    // 新增扣费服务
     virtual ::grpc::Status CreateDeduction(::grpc::ServerContext* context, const ::protocol::payment::deduction::v1::DeductionReq* request, ::protocol::payment::deduction::v1::DeductionResp* response);
   };
   template <class BaseClass>

@@ -32,7 +32,6 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
-#include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_deduction_2eproto
@@ -192,7 +191,6 @@ class DeductionStruct :
   enum : int {
     kTitleFieldNumber = 1,
     kDescFieldNumber = 2,
-    kStartTimeFieldNumber = 6,
     kStatusFieldNumber = 3,
     kIdFieldNumber = 4,
     kPayMethodIdFieldNumber = 5,
@@ -229,21 +227,6 @@ class DeductionStruct :
   std::string* _internal_mutable_desc();
   public:
 
-  // .google.protobuf.Timestamp start_time = 6;
-  bool has_start_time() const;
-  private:
-  bool _internal_has_start_time() const;
-  public:
-  void clear_start_time();
-  const PROTOBUF_NAMESPACE_ID::Timestamp& start_time() const;
-  PROTOBUF_NAMESPACE_ID::Timestamp* release_start_time();
-  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_start_time();
-  void set_allocated_start_time(PROTOBUF_NAMESPACE_ID::Timestamp* start_time);
-  private:
-  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_start_time() const;
-  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_start_time();
-  public:
-
   // uint32 status = 3;
   void clear_status();
   ::PROTOBUF_NAMESPACE_ID::uint32 status() const;
@@ -278,7 +261,6 @@ class DeductionStruct :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr desc_;
-  PROTOBUF_NAMESPACE_ID::Timestamp* start_time_;
   ::PROTOBUF_NAMESPACE_ID::uint32 status_;
   ::PROTOBUF_NAMESPACE_ID::uint32 id_;
   ::PROTOBUF_NAMESPACE_ID::uint32 pay_method_id_;
@@ -826,61 +808,6 @@ inline void DeductionStruct::_internal_set_pay_method_id(::PROTOBUF_NAMESPACE_ID
 inline void DeductionStruct::set_pay_method_id(::PROTOBUF_NAMESPACE_ID::uint32 value) {
   _internal_set_pay_method_id(value);
   // @@protoc_insertion_point(field_set:protocol.payment.deduction.v1.DeductionStruct.pay_method_id)
-}
-
-// .google.protobuf.Timestamp start_time = 6;
-inline bool DeductionStruct::_internal_has_start_time() const {
-  return this != internal_default_instance() && start_time_ != nullptr;
-}
-inline bool DeductionStruct::has_start_time() const {
-  return _internal_has_start_time();
-}
-inline const PROTOBUF_NAMESPACE_ID::Timestamp& DeductionStruct::_internal_start_time() const {
-  const PROTOBUF_NAMESPACE_ID::Timestamp* p = start_time_;
-  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      &PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const PROTOBUF_NAMESPACE_ID::Timestamp& DeductionStruct::start_time() const {
-  // @@protoc_insertion_point(field_get:protocol.payment.deduction.v1.DeductionStruct.start_time)
-  return _internal_start_time();
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* DeductionStruct::release_start_time() {
-  // @@protoc_insertion_point(field_release:protocol.payment.deduction.v1.DeductionStruct.start_time)
-  
-  PROTOBUF_NAMESPACE_ID::Timestamp* temp = start_time_;
-  start_time_ = nullptr;
-  return temp;
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* DeductionStruct::_internal_mutable_start_time() {
-  
-  if (start_time_ == nullptr) {
-    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaNoVirtual());
-    start_time_ = p;
-  }
-  return start_time_;
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* DeductionStruct::mutable_start_time() {
-  // @@protoc_insertion_point(field_mutable:protocol.payment.deduction.v1.DeductionStruct.start_time)
-  return _internal_mutable_start_time();
-}
-inline void DeductionStruct::set_allocated_start_time(PROTOBUF_NAMESPACE_ID::Timestamp* start_time) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time_);
-  }
-  if (start_time) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(start_time)->GetArena();
-    if (message_arena != submessage_arena) {
-      start_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, start_time, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  start_time_ = start_time;
-  // @@protoc_insertion_point(field_set_allocated:protocol.payment.deduction.v1.DeductionStruct.start_time)
 }
 
 // -------------------------------------------------------------------
